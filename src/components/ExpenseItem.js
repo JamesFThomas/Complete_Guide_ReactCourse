@@ -1,4 +1,4 @@
-import './ExpenseItem.css'
+import '../style/ExpenseItem.css'
 import ExpenseDate from './ExpenseDate'
 
 const ExpenseItem = (expenses) => {
