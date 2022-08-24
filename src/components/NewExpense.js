@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import '../style/NewExpense.css';
 import ExpenseForm from './ExpenseForm';
 
-const NewExpense = () => {
+const NewExpense = (props) => {
   // function to capture form data after submission
   const savedExpenseData = (expenseData) => {
     const newExpense = {
       ...expenseData,
-      id: Math.random().toString(), // create id key on new expense object
+      id: Math.random().toFixed(2).toString(), // create id key on new expense object
     };
 
-    console.log(newExpense); // check submitted form data
+    // pass new expense data to prop func from parent component
+    props.onAddExpense(newExpense);
   };
 
   return (
