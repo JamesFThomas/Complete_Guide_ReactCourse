@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import '../style/ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   // create initial state using single hook for each form input
   const [formTitle, setFormTitle] = useState('');
   const [formAmount, setFormAmount] = useState('');
@@ -31,7 +31,10 @@ const ExpenseForm = () => {
       date: new Date(formDate), // take form date and makes new date object
     };
 
-    console.log(formData);
+    // pass submitted form data up to NewExpense.js
+    props.onSaveData(formData);
+
+    // console.log(formData);
     // clear values from form after submission
     setFormTitle('');
     setFormAmount('');
