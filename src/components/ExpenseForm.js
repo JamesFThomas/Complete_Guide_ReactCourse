@@ -34,7 +34,7 @@ const ExpenseForm = (props) => {
     // pass submitted form data up to NewExpense.js
     props.onSaveData(formData);
 
-    // console.log(formData);
+    console.log(formData);
     // clear values from form after submission
     setFormTitle('');
     setFormAmount('');

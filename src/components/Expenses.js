@@ -20,7 +20,12 @@ const Expenses = (props) => {
       {
         // dynamically render all items in the expenses array
         expenses.map((e) => (
-          <ExpenseItem date={e.date} title={e.title} amount={e.amount} />
+          <ExpenseItem
+            key={e.id}
+            title={e.title}
+            amount={e.amount}
+            date={e.date}
+          />
         ))
       }
     </div>
