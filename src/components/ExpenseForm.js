@@ -3,10 +3,13 @@ import React, { useState } from 'react';
 import '../style/ExpenseForm.css';
 
 const ExpenseForm = (props) => {
-  // create initial state using single hook for each form input
+  // create initial state for form inputs
   const [formTitle, setFormTitle] = useState('');
   const [formAmount, setFormAmount] = useState('');
   const [formDate, setFormDate] = useState('');
+
+  // state for conditional rendering
+  const [show, setShow] = useState(false);
 
   // functions to capture input value change on form
   const onTitleChange = (e) => {
@@ -34,45 +37,58 @@ const ExpenseForm = (props) => {
     // pass submitted form data up to NewExpense.js
     props.onSaveData(formData);
 
-    console.log(formData);
     // clear values from form after submission
     setFormTitle('');
     setFormAmount('');
     setFormDate('');
   };
 
+  // function to render form on button click
+  const showComponent = () => {
+    // console.log('clicked');
+    // console.log(show);
+    setShow(!show);
+  };
+
   return (
-    <form onSubmit={onFormSubmit}>
-      <div className='new-expense__controls'>
-        <div className='new-expense__control'>
-          <label>Title</label>
-          <input type='text' onChange={onTitleChange} value={formTitle} />
-        </div>
-        <div className='new-expense__control'>
-          <label>Amount</label>
-          <input
-            type='number'
-            onChange={onAmountChange}
-            value={formAmount}
-            min='0.01'
-            step='0.01'
-          />
-        </div>
-        <div className='new-expense__control'>
-          <label>Date</label>
-          <input
-            type='date'
-            onChange={onDateChange}
-            value={formDate}
-            min='2019-01-01'
-            max='2028-12-31'
-          />
-        </div>
-      </div>
-      <div className='new-expense__actions'>
-        <button type='submit'> Add Expense </button>
-      </div>
-    </form>
+    <div>
+      {show == false ? (
+        <button onClick={showComponent}> Enter New Expense </button>
+      ) : (
+        <form onSubmit={onFormSubmit}>
+          <div className='new-expense__controls'>
+            <div className='new-expense__control'>
+              <label>Title</label>
+              <input type='text' onChange={onTitleChange} value={formTitle} />
+            </div>
+            <div className='new-expense__control'>
+              <label>Amount</label>
+              <input
+                type='number'
+                onChange={onAmountChange}
+                value={formAmount}
+                min='0.01'
+                step='0.01'
+              />
+            </div>
+            <div className='new-expense__control'>
+              <label>Date</label>
+              <input
+                type='date'
+                onChange={onDateChange}
+                value={formDate}
+                min='2019-01-01'
+                max='2028-12-31'
+              />
+            </div>
+          </div>
+          <div className='new-expense__actions'>
+            <button onClick={showComponent}> Cancel </button>
+            <button type='submit'> Add Expense </button>
+          </div>
+        </form>
+      )}
+    </div>
   );
 };
 

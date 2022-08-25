@@ -23,7 +23,7 @@ const ExpenseItem = (expenses) => {
         <h2> {title}</h2>
       </div>
       <div className='expense-item__price'> {amount} </div>
-      <button onClick={clickHandler}>Change Title</button>
+      {/* <button onClick={clickHandler}>Change Title</button> */}
     </div>
   );
 };
