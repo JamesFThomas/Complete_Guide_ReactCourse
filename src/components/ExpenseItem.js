@@ -7,6 +7,7 @@ const ExpenseItem = (expenses) => {
   const [title, setTitle] = useState(expenses.title);
 
   const date = expenses.date;
+  // console.log(typeof date);
   //   const title = expenses.title;
   const amount = expenses.amount;
 
