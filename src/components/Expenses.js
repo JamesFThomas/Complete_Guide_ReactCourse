@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../style/Expenses.css';
 import ExpenseItem from './ExpenseItem';
 import ExpensesFilter from './ExpensesFilter';
+import ExpensesChart from './ExpensesChart';
 
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState('2020');
@@ -18,12 +19,19 @@ const Expenses = (props) => {
     return new Date(expense.date).getFullYear().toString() === filteredYear;
   });
 
+  // pass different expenses list to ExpenseChart depending on filteredYear value
+  let expensesList;
+  filteredYear === 'All'
+    ? (expensesList = expenses)
+    : (expensesList = filteredExpenses);
+
   return (
     <div className='expenses'>
       <ExpensesFilter
         selected={filteredYear}
         onChangeFilter={filterChangeHandler}
       />
+      <ExpensesChart expenses={expensesList} />
       {
         //conditionally render expenses list unfiltered if filteredYear value is All
         filteredYear === 'All' ? (
